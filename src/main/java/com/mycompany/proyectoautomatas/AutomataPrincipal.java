@@ -22,15 +22,23 @@ public class AutomataPrincipal {
     private static final int NUMERO_FLOTANTE = 2;
     private static final int COMENTARIO = 3;
     private static final int PARENTESIS = 4;
-    private static final int LLAVE = 5;
-    
-    //Contadores de tokens para cada grupo
+	private static final int LLAVE = 5;
+	private static final int OPERADOR_LOGICO = 6;
+	private static final int OPERADOR_ARITMETICO = 7;
+	private static final int ASIGNACION = 8;
+
+
+
+	//Contadores de tokens para cada grupo
     private int contadorEnteros = 0;
     private int contadorFlotantes = 0;
     private int contadorComentarios = 0;
     private int contadorParentesis = 0;
-    private int contadorLlaves = 0;
-    
+	private int contadorLlaves = 0;
+	private int contadorLogico = 0;
+	private int contadorAritmetico = 0;
+	private int contadorAsignacion = 0;
+
     //Variables Globales
     FileReader fileReader;
     BufferedReader texto;
@@ -69,6 +77,12 @@ public class AutomataPrincipal {
 		    case PARENTESIS: contadorParentesis++;
 		    break;
 		    case LLAVE: contadorLlaves++;
+			break;
+			case OPERADOR_LOGICO: contadorLogico++;
+			break;
+			case OPERADOR_ARITMETICO: contadorAritmetico++;
+			break;
+			case ASIGNACION: contadorAsignacion++;
 		}
 	    }while(caracter != -1);
 	    
@@ -76,8 +90,11 @@ public class AutomataPrincipal {
 	    System.out.println("Número de enteros:" + contadorEnteros);
 	    System.out.println("Número de comentarios:" + contadorComentarios);
 	    System.out.println("Número de paréntesis:" + contadorParentesis);
-	    System.out.println("Número de llaves:" + contadorLlaves);
-	    
+		System.out.println("Número de llaves:" + contadorLlaves);
+		System.out.println("Número de operadores Logicos:" + contadorLogico);
+		System.out.println("Número de operadores Aritmeticos:" + contadorAritmetico);
+		System.out.println("Número de Asignacion:" + contadorAsignacion);
+
 	} catch (IOException ex) {
 	    Logger.getLogger(AutomataPrincipal.class.getName()).log(Level.SEVERE, null, ex);
 	}
@@ -94,10 +111,12 @@ public class AutomataPrincipal {
 	    resultado = estado_Parentesis_q1((char) texto.read());
 	else if (caracter == '{' || caracter == '}')
 	    resultado = estado_Llaves_q1((char) texto.read());
-	return resultado;
+	else if (caracter == '+' || caracter == '-' || caracter == '*' || caracter == '/' || caracter == '%') ;
+		resultado = estado_Operadores_Logicos((char) texto.read());
+		return resultado;
     }
-    
-    //Cuando se detecta que el nuevo token puede ser un número, vamos a este estado, donde evaluamos si es entero, flotante o nulo
+
+	//Cuando se detecta que el nuevo token puede ser un número, vamos a este estado, donde evaluamos si es entero, flotante o nulo
     public int estado_Numeros_q1(char caracter) throws IOException{
 	if (Character.isDigit(caracter))
 	    return estado_Numeros_q1((char) texto.read());
@@ -176,6 +195,12 @@ public class AutomataPrincipal {
 	    return true;
 	else return false;
     }
+
+	/*METODO LOGICO*/
+	private int estado_Operadores_Logicos(char caracter) throws IOException {
+		if (caracter == '+'){}
+			return TOKEN_NULO;
+	}
     
     //GETTERS Y SETTERS
 
@@ -198,7 +223,10 @@ public class AutomataPrincipal {
     public int getContadorFlotantes() {
 	return contadorFlotantes;
     }
-    
+
+	public int getContadorLogico(){
+		return contadorLogico;
+	}
     
     
 }

@@ -15,7 +15,7 @@ public class InterfazAutomata extends javax.swing.JFrame {
      * Creates new form InterfazAutomata
      */
     public InterfazAutomata() {
-	automata = new AutomataPrincipal("/home/iv4nt/NetBeansProjects/ProyectoAutomatas/src/main/java/com/mycompany/proyectoautomatas/tokens.txt");
+	automata = new AutomataPrincipal("/home/armando/Documentos/ProyectoAutomatas/src/main/java/com/mycompany/proyectoautomatas/tokens.txt");
 	automata.evaluarTexto();
 	//Después de aplicar el autómata e iniciar los componentes visuales mostramos los resultados en la interfaz:
 	initComponents();
