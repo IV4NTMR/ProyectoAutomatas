@@ -111,8 +111,12 @@ public class AutomataPrincipal {
 	    resultado = estado_Parentesis_q1((char) texto.read());
 	else if (caracter == '{' || caracter == '}')
 	    resultado = estado_Llaves_q1((char) texto.read());
-	else if (caracter == '+' || caracter == '-' || caracter == '*' || caracter == '/' || caracter == '%') ;
-		resultado = estado_Operadores_Logicos((char) texto.read());
+	else if (caracter == '+' || caracter == '-' || caracter == '*' || caracter == '/' || caracter == '%')
+		resultado = estado_aritmetico_q1((char) texto.read());
+	else if (caracter == '&' || caracter == '|' || caracter == '!' )
+		resultado = estado_Logico_q1((char) texto.read());
+	else if (caracter == '<' || caracter == '>' || caracter == '=' || caracter == '!' )
+		resultado = estado_Asignacion_q1((char) texto.read());
 		return resultado;
     }
 
@@ -196,13 +200,65 @@ public class AutomataPrincipal {
 	else return false;
     }
 
-	/*METODO LOGICO*/
-	private int estado_Operadores_Logicos(char caracter) throws IOException {
-		if (caracter == '+'){}
-			return TOKEN_NULO;
+	/****************************************METODO ARITMETICO**********************/
+	private int estado_aritmetico_q1(char caracter) {
+		if (finalDeToken(caracter))
+			return OPERADOR_ARITMETICO;
+		return TOKEN_NULO;
 	}
-    
-    //GETTERS Y SETTERS
+
+	/***************************************METODO LOGICO***********************************************/
+	private int estado_Logico_q1(char caracter)  throws IOException{
+		if (caracter == '&')
+			return estado_Logico_q2((char) texto.read());
+		else if (caracter == '|')
+			return estado_Logico_q3((char) texto.read());
+		else if (caracter == '!')
+			return estado_Logico_q4((char) texto.read());
+		return TOKEN_NULO;
+	}
+	private int estado_Logico_q2(char caracter) throws IOException{
+		if (caracter == '&')
+			return estado_Logico_q4((char) texto.read());
+		return TOKEN_NULO;
+	}
+	private int estado_Logico_q3(char caracter) throws IOException{
+		if (caracter == '|')
+			return estado_Logico_q4((char) texto.read());
+		return TOKEN_NULO;
+	}
+	private int estado_Logico_q4(char caracter) {
+		if (finalDeToken(caracter))
+			return OPERADOR_LOGICO;
+		return TOKEN_NULO;
+	}
+	/************************************Asignacion*************************************************************/
+	private int estado_Asignacion_q1(char caracter) throws IOException {
+		if (caracter == '<')
+			return estado_Asignacion_q2((char) texto.read());
+		else if (caracter == '>')
+			return estado_Asignacion_q2((char) texto.read());
+		else if (caracter == '=')
+			return estado_Asignacion_q2((char) texto.read());
+		else if (caracter == '!')
+			return estado_Asignacion_q2((char) texto.read());
+		return TOKEN_NULO;
+	}
+	private int estado_Asignacion_q2(char caracter) throws IOException{
+		if (caracter == '=')
+			return estado_Asignacion_q3((char) texto.read());
+		else if (finalDeToken(caracter))
+			 return OPERADOR_LOGICO;
+		return TOKEN_NULO;
+
+	}
+	private int estado_Asignacion_q3(char caracter) {
+		if (finalDeToken(caracter))
+			return OPERADOR_LOGICO;
+		return TOKEN_NULO;
+	}
+
+	//GETTERS Y SETTERS
 
     public int getContadorComentarios() {
 	return contadorComentarios;
@@ -223,9 +279,15 @@ public class AutomataPrincipal {
     public int getContadorFlotantes() {
 	return contadorFlotantes;
     }
-
+/********************************Mis gets & sets*******************************************************************/
 	public int getContadorLogico(){
 		return contadorLogico;
+	}
+	public int getContadorAritmetico(){
+		return contadorAritmetico;
+	}
+	public int getContadorAsignacion(){
+		return contadorAsignacion;
 	}
     
     
