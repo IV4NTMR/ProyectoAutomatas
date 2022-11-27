@@ -23,7 +23,9 @@ public class InterfazAutomata extends javax.swing.JFrame {
 	labelEnteros.setText("Números Enteros: " + automata.getContadorEnteros());
 	labelDecimales.setText("Números Decimales: " + automata.getContadorFlotantes());
 	labelParentesis.setText("Paréntesis: " + automata.getContadorParentesis());
-	labelLlaves.setText("Llaves: " + automata.getContadorLlaves());
+        labelLlaves.setText("Llaves: " + automata.getContadorLlaves());
+        jLabel7.setText("Logicos: " + automata.getContadorLogico());
+
     }
 
     /**
@@ -54,6 +56,7 @@ public class InterfazAutomata extends javax.swing.JFrame {
         labelComentarios = new javax.swing.JLabel();
         labelParentesis = new javax.swing.JLabel();
         labelLlaves = new javax.swing.JLabel();
+//        labelLogicos = new javax.swing.JLabel();
 
         jLabel8.setText("Palabras Reservadas:");
 
@@ -121,6 +124,9 @@ public class InterfazAutomata extends javax.swing.JFrame {
         labelLlaves.setFont(new java.awt.Font("JetBrainsMonoMedium NF", 0, 10)); // NOI18N
         labelLlaves.setText("Llaves:");
 
+//        labelLogicos.setFont(new java.awt.Font("JetBrainsMonoMedium NF", 0, 10)); // NOI18N
+//        labelLogicos.setText("Logicos:");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -148,7 +154,8 @@ public class InterfazAutomata extends javax.swing.JFrame {
                             .addComponent(jLabel7, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 194, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel11, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 194, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(labelDecimales, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 194, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(labelParentesis, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 194, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(labelParentesis, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 194, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            /*.addComponent(labelLogicos, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 194, javax.swing.GroupLayout.PREFERRED_SIZE)*/)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -184,6 +191,7 @@ public class InterfazAutomata extends javax.swing.JFrame {
                     .addComponent(labelComentarios, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(labelLlaves)
+//                .addComponent(labelLogicos)
                 .addContainerGap(34, Short.MAX_VALUE))
         );
 
@@ -223,5 +231,7 @@ public class InterfazAutomata extends javax.swing.JFrame {
     private javax.swing.JLabel labelEnteros;
     private javax.swing.JLabel labelLlaves;
     private javax.swing.JLabel labelParentesis;
+//    private javax.swing.JLabel labelLogicos;
+
     // End of variables declaration//GEN-END:variables
 }
