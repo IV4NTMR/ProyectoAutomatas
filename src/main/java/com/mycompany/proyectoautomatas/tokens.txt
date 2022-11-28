@@ -1,29 +1,10 @@
-102 
-201.2 
-1.1 
-0.1 
-1 
-1.2034 
-1.
+/*EsteArchivoEsDeFacil_Lectura_Para_el_Aut%mata*/
 
-/**/
-/*Hola_este_es_un_comentario*/
-/
-/* */
+if ( numero >= 17.34 ) {
+	dato = 25..18
+	}
+	
+while ( dato != hola && valor <. 5 ) { x = dato - numero }
 
-+
-++
-+ + +
--
---
-- - -
-*
-**
-* * *
-/
-//
-/ / /
-%
-%%
-% % %
+
 
